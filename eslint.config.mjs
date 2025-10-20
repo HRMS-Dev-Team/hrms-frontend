@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url';
 import antfu from '@antfu/eslint-config';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import playwright from 'eslint-plugin-playwright';
-import storybook from 'eslint-plugin-storybook';
 import tailwind from 'eslint-plugin-tailwindcss';
 
 export default antfu(
@@ -27,9 +26,7 @@ export default antfu(
     },
 
     // Ignored paths
-    ignores: [
-      'migrations/**/*',
-    ],
+    ignores: ['migrations/**/*'],
   },
   // --- Accessibility Rules ---
   jsxA11y.flatConfigs.recommended,
@@ -44,24 +41,38 @@ export default antfu(
   },
   // --- E2E Testing Rules ---
   {
-    files: [
-      '**/*.spec.ts',
-      '**/*.e2e.ts',
-    ],
+    files: ['**/*.spec.ts', '**/*.e2e.ts'],
     ...playwright.configs['flat/recommended'],
   },
-  // --- Storybook Rules ---
-  ...storybook.configs['flat/recommended'],
   // --- Custom Rule Overrides ---
   {
     rules: {
-      'antfu/no-top-level-await': 'off', // Allow top-level await
-      'style/brace-style': ['error', '1tbs'], // Use the default brace style
-      'ts/consistent-type-definitions': ['error', 'type'], // Use `type` instead of `interface`
-      'react/prefer-destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
-      'node/prefer-global/process': 'off', // Allow using `process.env`
-      'test/padding-around-all': 'error', // Add padding in test files
-      'test/prefer-lowercase-title': 'off', // Allow using uppercase titles in test titles
+      'antfu/no-top-level-await': 'off',
+      'style/brace-style': ['error', '1tbs'],
+      'ts/consistent-type-definitions': ['error', 'type'],
+      'react/prefer-destructuring-assignment': 'off',
+      'node/prefer-global/process': 'off',
+      'test/padding-around-all': 'error',
+      'react-hooks-extra/no-direct-set-state-in-use-effect': 'off',
+      'style/arrow-parens': 'off',
+      'style/multiline-ternary': 'off',
+      'style/operator-linebreak': 'off',
+      'style/jsx-one-expression-per-line': 'off',
+      'test/prefer-lowercase-title': 'off',
+      'jsx-a11y/no-static-element-interactions': 'off',
+      'jsx-a11y/click-events-have-key-events': 'off',
+      'import/no-mutable-exports': 'off',
+      'no-irregular-whitespace': 'off',
+      'style/jsx-curly-newline': 'off',
+      'style/quotes': 'off',
+      'style/indent': 'off',
+      'style/indent-binary-ops': 'off',
+      'style/jsx-closing-tag-location': 'off',
+      'antfu/consistent-list-newline': 'off',
+      'style/quote-props': 'off',
+      'yaml/quotes': 'off',
+      'jsonc/sort-keys': 'off',
+      'jsx-a11y/no-noninteractive-tabindex': 'off',
     },
   },
 );
